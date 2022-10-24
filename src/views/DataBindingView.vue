@@ -11,6 +11,39 @@ export default {
             city:'064',
             arr:['bb'],
             radiov:'ee',
+            bindtest:'never changed',
+            bind2:'',
+            cities:[
+                {title:'Seoul',code:'02'},
+                {title:'Busan',code:'011'},
+                {title:'Geo',code:'097'},
+            ],
+            drinklist:[
+                {
+                    drinkid:1,
+                    name:'Coke',
+                    price:1500,
+                    qty:1
+                },
+                {
+                    drinkid:2,
+                    name:'Milk',
+                    price:1000,
+                    qty:54
+                },
+                {
+                    drinkid:3,
+                    name:'juice',
+                    price:1900,
+                    qty:14
+                },
+
+            ],
+            active:true,
+            style1:{
+                color:'red',
+                fontSize:'30px'
+            }
         }
     },
     methods:{
@@ -19,6 +52,9 @@ export default {
         },
         c(){
             this.userid="j"
+        },
+        b(){
+            console.log(this.bindtest)
         }
     }
 }
@@ -71,9 +107,51 @@ export default {
             <label for="e">eeeeeeee</label>
          </div>
          <div>{{radiov}}</div>
+         <br>
+         <input type="text" :value="bindtest">
+         <button @click="b">enter</button>
+         <br>
+         <input type="text" v-model="bind2">
+         <button :disabled="bind2===''">search</button>
+         <br>
+         <br>
+         <select>
+            <option value=""></option>
+            <option :value="city.code" :key="city.code" v-for="city in cities">
+                {{city.title}}
+            </option>
+         </select>
+         <br><br>
+         <table>
+            <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Number</th>
+                <th>Sum</th>
+            </thead>
+            <tbody>
+                <tr v-for="drink in drinklist">
+                    <td>{{drink.name}}</td>
+                    <td>{{drink.price}}</td>
+                    <td><input type="number" v-model.number="drink.qty"></td>
+                    <td>{{drink.price*drink.qty}}</td>
+                </tr>
+            </tbody>
+         </table>
+         <br>
+         <br>
+         <div :class="{ 'a---a' : active,'b':true}">Class Binding</div>
+         <br>
+         <div :style="style1">AAA</div>
+         <button @click="style1.color='blue'">Change color</button>
     </div>
 </template>
 
 <style scoped>
-
+.a---a{
+    background-color: green;
+}
+.b{
+    color: yellow;
+}
 </style>
