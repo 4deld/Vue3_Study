@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import TheWelcome from './TheWelcome.vue'
 defineProps<{
   msg: string
 }>()
@@ -6,6 +7,7 @@ defineProps<{
 
 <template>
   <div class="greetings">
+    <TheWelcome />
     <h1 class="green">{{ msg }}</h1>
     <h3>
       You’ve successfully created a project with
