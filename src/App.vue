@@ -2,6 +2,13 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from '@/stores/counter';
+import { storeToRefs } from "pinia";
+
+const store = useCounterStore();
+
+const { name, doubleCount } = (store); //반응형 x
+
 // 반응적인 상태의 속성
 const count = ref(0)
 
@@ -17,6 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
+  
   <header>
     <button @click="increment">숫자 세기: {{ count }}</button>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
@@ -28,10 +36,16 @@ onMounted(() => {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/databinding">DataBindingView</RouterLink>
+        <RouterLink to="/stores">Store</RouterLink>
       </nav>
     </div>
   </header>
-
+  <div>
+    
+    <div>store. {{ store.name }} : {{ store.doubleCount }}</div>
+    {{name}} : {{doubleCount}}
+    <button @click="store.increment">increment</button>
+  </div>
   <RouterView />
 </template>
 

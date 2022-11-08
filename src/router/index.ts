@@ -22,7 +22,11 @@ const router = createRouter({
       name: 'DataBindingView',
       component: () => import('../views/DataBindingView.vue')
     },
-    
+    {
+      path: '/stores',
+      name: 'StoreView',
+      component: () => import('../views/StoreView.vue')
+    },
   ]
 })
 
